@@ -1,0 +1,158 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #f1f5f9;
+    --bg-card: #ffffff;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+    --border: #e2e8f0;
+    --accent: #0ea5e9;
+    --accent-light: #e0f2fe;
+    --gradient-start: #0ea5e9;
+    --gradient-end: #22c55e;
+  }
+
+  .dark {
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-card: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --border: #334155;
+    --accent: #38bdf8;
+    --accent-light: #0c4a6e;
+    --gradient-start: #38bdf8;
+    --gradient-end: #4ade80;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--text-muted);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 dark:bg-slate-800/70 backdrop-blur-lg border border-white/20 dark:border-slate-700/30;
+  }
+
+  .glass-card {
+    @apply bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl border border-slate-200/50 dark:border-slate-700/50 shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-500 to-calm-500 bg-clip-text text-transparent;
+  }
+
+  .gradient-bg {
+    @apply bg-gradient-to-br from-primary-500 to-calm-500;
+  }
+
+  .gradient-border {
+    @apply border border-transparent bg-clip-padding;
+    background-image: linear-gradient(var(--bg-card), var(--bg-card)), linear-gradient(135deg, #0ea5e9, #22c55e);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-xl font-semibold text-white gradient-bg 
+    hover:shadow-lg hover:shadow-primary-500/25 hover:-translate-y-0.5 
+    active:translate-y-0 transition-all duration-200 
+    disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-xl font-semibold border-2 border-primary-500 text-primary-500 
+    hover:bg-primary-50 dark:hover:bg-primary-900/20 
+    transition-all duration-200;
+  }
+
+  .btn-danger {
+    @apply px-6 py-3 rounded-xl font-semibold text-white bg-red-500 
+    hover:bg-red-600 hover:shadow-lg hover:shadow-red-500/25 
+    transition-all duration-200;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-600 
+    bg-white dark:bg-slate-700 text-slate-900 dark:text-white
+    focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500 
+    placeholder-slate-400 dark:placeholder-slate-500
+    transition-all duration-200;
+  }
+
+  .sidebar-link {
+    @apply flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 
+    hover:bg-primary-50 dark:hover:bg-slate-700/50 hover:text-primary-600 dark:hover:text-primary-400 
+    transition-all duration-200 font-medium;
+  }
+
+  .sidebar-link.active {
+    @apply bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 
+    shadow-sm;
+  }
+
+  .stat-card {
+    @apply glass-card p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+
+  .chat-bubble-user {
+    @apply bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-2xl rounded-br-md px-5 py-3 max-w-[80%] shadow-md;
+  }
+
+  .chat-bubble-ai {
+    @apply bg-slate-100 dark:bg-slate-700 text-slate-800 dark:text-slate-200 rounded-2xl rounded-bl-md px-5 py-3 max-w-[80%] shadow-md;
+  }
+
+  .mood-emoji {
+    @apply text-4xl cursor-pointer hover:scale-125 transition-transform duration-200;
+  }
+
+  .emergency-glow {
+    animation: emergencyPulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes emergencyPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    50% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
